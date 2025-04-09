@@ -1,0 +1,40 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Go binaries and build files
+websocket
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.wasm
+
+# Go test files
+*.test
+
+# Go coverage files
+*.out
+
+# IDE and editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Logs
+logs
+*.log
+
+# Build output
+dist/
+build/ 

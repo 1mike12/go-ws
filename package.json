@@ -1,0 +1,26 @@
+{
+  "name": "go-ws",
+  "version": "1.0.0",
+  "description": "WebSocket client with customizable TLS handshake using Go and azuretls",
+  "main": "index.js",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "scripts": {
+    "install": "go build -o websocket websocket.go",
+    "test": "mocha"
+  },
+  "keywords": [
+    "websocket",
+    "tls",
+    "go",
+    "node"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "mocha": "^10.3.0",
+    "chai": "^4.3.7",
+    "chai-as-promised": "^7.1.1"
+  }
+} 
