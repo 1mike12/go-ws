@@ -37,10 +37,19 @@ describe('WebSocketClient', () => {
   });
 
   describe('Connection', () => {
-    it('should connect to echo websocket server', async () => {
+    it('should connect to echo websocket server with plain object headers', async () => {
       await ws.connect(ECHO_SERVER, {
         'User-Agent': 'Test Client'
       });
+    });
+
+    it('should connect to echo websocket server with Map headers', async () => {
+      const headers = new Map([
+        ['User-Agent', 'Test Client'],
+        ['Accept', 'application/json'],
+        ['Content-Type', 'application/json']
+      ]);
+      await ws.connect(ECHO_SERVER, headers);
     });
 
     it('should throw error when connecting to invalid URL', async () => {

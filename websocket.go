@@ -11,12 +11,12 @@ import (
 )
 
 type Command struct {
-	Action  string            `json:"action"`
-	URL     string            `json:"url,omitempty"`
-	Headers map[string]string `json:"headers,omitempty"`
-	Message interface{}       `json:"message,omitempty"`
-	Ja3     string            `json:"ja3,omitempty"`
-	Browser string            `json:"browser,omitempty"`
+	Action  string      `json:"action"`
+	URL     string      `json:"url,omitempty"`
+	Headers [][]string  `json:"headers,omitempty"`
+	Message interface{} `json:"message,omitempty"`
+	Ja3     string      `json:"ja3,omitempty"`
+	Browser string      `json:"browser,omitempty"`
 }
 
 type Response struct {
@@ -53,13 +53,16 @@ func (c *WebSocketClient) ApplyJa3(ja3 string, browser string) error {
 }
 
 // Connect establishes a websocket connection
-func (c *WebSocketClient) Connect(url string, headers map[string]string) error {
+func (c *WebSocketClient) Connect(url string, headers [][]string) error {
 	c.mu.Lock()
 	defer c.mu.Unlock()
 
+	// Convert the array of [key, value] pairs to OrderedHeaders
 	orderedHeaders := azuretls.OrderedHeaders{}
-	for key, value := range headers {
-		orderedHeaders = append(orderedHeaders, []string{key, value})
+	for _, header := range headers {
+		if len(header) == 2 {
+			orderedHeaders = append(orderedHeaders, header)
+		}
 	}
 
 	var err error

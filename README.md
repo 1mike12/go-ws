@@ -22,6 +22,14 @@ ws.connect('wss://example.com/ws', {
   'Custom-Header': 'Custom Value'
 });
 
+// Or use a Map for ordered headers (order will be preserved)
+const orderedHeaders = new Map([
+  ['User-Agent', 'Custom User Agent'],
+  ['Accept', 'application/json'],
+  ['Content-Type', 'application/json']
+]);
+ws.connect('wss://example.com/ws', orderedHeaders);
+
 // Send a message
 ws.send({
   type: 'message',

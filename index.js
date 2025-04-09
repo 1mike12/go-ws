@@ -76,11 +76,25 @@ class WebSocketClient {
   }
 
   connect(url, headers = {}) {
+    // Convert headers to the appropriate format for the Go side
+    const formattedHeaders = this._formatHeaders(headers);
+    
     return this._sendCommand({
       action: 'connect',
       url,
-      headers
+      headers: formattedHeaders
     });
+  }
+
+  _formatHeaders(headers) {
+    // If headers is already a Map, convert it to array format
+    if (headers instanceof Map) {
+      return Array.from(headers.entries());
+    }
+    
+    // If headers is a plain object, convert to array format
+    // This won't preserve order, but maintains backward compatibility
+    return Object.entries(headers);
   }
 
   send(message) {
