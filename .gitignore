@@ -5,7 +5,7 @@ yarn-debug.log*
 yarn-error.log*
 
 # Go binaries and build files
-websocket
+build/
 *.exe
 *.exe~
 *.dll
@@ -36,5 +36,4 @@ logs
 *.log
 
 # Build output
-dist/
-build/ 
+dist/ 

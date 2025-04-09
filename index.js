@@ -4,7 +4,11 @@ const Browser = require('./browser');
 
 class WebSocketClient {
   constructor(options = {}) {
-    this.process = spawn('./websocket', [], {
+    // Determine the correct binary path based on platform
+    const binaryName = process.platform === 'win32' ? 'websocket.exe' : 'websocket';
+    const binaryPath = path.join('build', binaryName);
+
+    this.process = spawn(binaryPath, [], {
       stdio: ['pipe', 'pipe', 'pipe']
     });
 
